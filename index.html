@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Happy Tires Work Order</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- jsPDF for PDF export (loaded from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div class="app">
+    <header class="shop-header">
+      <h1>Happy Tires Automotive Centre</h1>
+      <p>321 Grays Road, Hamilton Ontario L8E2Z1</p>
+      <p>Phone: 905-741-3377 &nbsp;|&nbsp; Email: Happytiresinc@gmail.com</p>
+    </header>
+
+    <section class="card">
+      <div class="row between align-end wrap">
+        <h2 class="section-title">Work Order</h2>
+        <div class="wo-meta">
+          <label>WO # <span id="workOrderNumber">001</span></label>
+          <label>Date <span id="currentDate"></span></label>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <label>Customer Name
+          <input id="customerName" type="text" inputmode="text" autocomplete="name" />
+        </label>
+        <label>Phone Number
+          <input id="customerPhone" type="tel" inputmode="tel" autocomplete="tel" />
+        </label>
+        <label>Email Address
+          <input id="customerEmail" type="email" inputmode="email" autocomplete="email" />
+        </label>
+        <label>Year / Make / Model
+          <input id="vehicle" type="text" placeholder="e.g. 2017 Toyota Corolla" />
+        </label>
+        <label>VIN #
+          <input id="vin" type="text" autocapitalize="characters" />
+        </label>
+        <label>License Plate
+          <input id="plate" type="text" />
+        </label>
+        <label>Odometer
+          <input id="odometer" type="text" inputmode="numeric" />
+        </label>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="row between align-center">
+        <h3 class="section-title">Services</h3>
+        <div class="row gap">
+          <button class="btn" id="addServiceBtn">Add Service</button>
+          <button class="btn outline" id="resetFormBtn" title="Clear form for a new customer without deleting history">Reset Work Order</button>
+        </div>
+      </div>
+      <div id="servicesList" class="services"></div>
+      <div class="totals">
+        <div><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+        <div><span>HST (13%)</span><span id="tax">$0.00</span></div>
+        <div class="grand"><span>Grand Total</span><span id="grandTotal">$0.00</span></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3 class="section-title">Approval</h3>
+      <label class="ack">
+        <input type="checkbox" id="approveCheckbox" />
+        <span>
+          By checking this box, I acknowledge and approve the listed repairs and authorize
+          Happy Tires Automotive Centre to proceed with the work as described.
+        </span>
+      </label>
+
+      <div class="sig-wrap">
+        <div class="sig-head">
+          <span>Customer Signature (optional)</span>
+          <div class="row gap">
+            <button class="btn sm" id="sigClearBtn">Clear</button>
+          </div>
+        </div>
+        <canvas id="signaturePad" height="180"></canvas>
+      </div>
+
+      <details class="disclaimer">
+        <summary>Estimate & Repair Terms</summary>
+        <p>
+          This estimate is based on preliminary inspection and reported concerns. Final pricing
+          may vary due to diagnostic findings, parts availability, or additional labour required
+          to restore the vehicle to a safe operating condition. Parts removed during repairs may
+          be disposed of unless requested otherwise at drop-off. Happy Tires Automotive Centre is
+          not responsible for loss or damage to vehicles or articles left in vehicles in the event
+          of fire, theft, accident, or other causes beyond our control. Warranties on parts and/or
+          labour apply only as stated on the final invoice and may be subject to manufacturer terms.
+          By approving this work order (checkbox and/or signature), you authorize us to proceed with the
+          listed repairs and to operate the vehicle for testing, diagnosis, and quality control.
+        </p>
+      </details>
+    </section>
+
+    <section class="card actions">
+      <div class="row wrap gap">
+        <button class="btn" id="saveBtn">Save Work Order</button>
+        <button class="btn" id="pdfBtn">Export to PDF</button>
+        <button class="btn" id="printBtn">Print</button>
+        <button class="btn outline" id="emailBtn">Email</button>
+        <a class="btn link" href="https://g.page/r/CYYnE9p8RLcrEBM/review" target="_blank" rel="noopener">Google Review</a>
+        <button class="btn outline" id="toggleHistoryBtn">Show/Hide History</button>
+      </div>
+      <div id="history" class="history" hidden>
+        <h4>Customer / Work Order History</h4>
+        <div id="historyList"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
