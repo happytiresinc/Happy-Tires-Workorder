@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Tires Work Order</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Happy Tires Automotive Centre</h1>
+      <p>321 Grays Road, Hamilton Ontario L8E2Z1</p>
+      <p>Phone: 905-741-3377 | Email: Happytiresinc@gmail.com</p>
+    </header>
+
+    <section id="customer-info">
+      <h2>Work Order</h2>
+      <p>Work Order #: <span id="workOrderNumber"></span></p>
+      <label>Customer Name: <input type="text" id="customerName"></label>
+      <label>Phone: <input type="text" id="customerPhone"></label>
+      <label>Email: <input type="email" id="customerEmail"></label>
+      <label>Year/Make/Model: <input type="text" id="vehicle"></label>
+      <label>VIN #: <input type="text" id="vin"></label>
+      <label>License Plate: <input type="text" id="plate"></label>
+      <label>Odometer: <input type="text" id="odometer"></label>
+    </section>
+
+    <section id="services">
+      <h2>Services</h2>
+      <div id="servicesList"></div>
+      <button onclick="addService()">Add Service</button>
+    </section>
+
+    <section id="signature">
+      <h2>Customer Approval</h2>
+      <canvas id="signaturePad" width="400" height="150"></canvas><br>
+      <button onclick="clearSignature()">Clear</button>
+      <p class="disclaimer">
+        I acknowledge and approve the above work order. I understand that estimates are subject to change based on actual inspection and repair needs. 
+        Parts may be replaced with quality aftermarket or OEM at shop discretion. The shop is not responsible for loss/damage of personal belongings. 
+        Warranty coverage applies only to parts and labor as specified on invoice.
+      </p>
+    </section>
+
+    <section id="actions">
+      <button onclick="saveWorkOrder()">Save</button>
+      <button onclick="printWorkOrder()">Print</button>
+      <button onclick="emailWorkOrder()">Email</button>
+      <a href="https://g.page/r/CYYnE9p8RLcrEBM/review" target="_blank">Leave us a Google Review</a>
+    </section>
+
+    <section id="history">
+      <button onclick="toggleHistory()">Show/Hide Work Order History</button>
+      <div id="historyList" style="display:none;"></div>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
